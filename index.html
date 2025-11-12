@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cronómetro</title>
+
+<!-- 🔗 Manifesto PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2196f3">
+
 <style>
 :root {
   --bg: #222d3e;
@@ -109,7 +114,7 @@ input.selected {
 
   <div>
     <input type="number" id="minutes" placeholder="Minutos" min="0" max="59">
-    <input type="number" id="seconds" placeholder= "Segundos" min="0" max="59">
+    <input type="number" id="seconds" placeholder="Segundos" min="0" max="59">
   </div>
 
   <div id="time">00m : 00s</div>
@@ -237,5 +242,15 @@ document.addEventListener("keydown", (e) => {
 focusElement(focusedIndex);
 display.textContent = "00m : 00s";
 </script>
+
+<!-- 🔧 Registro do Service Worker -->
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js')
+    .then(() => console.log('Service Worker registrado com sucesso.'))
+    .catch(err => console.error('Falha ao registrar o Service Worker:', err));
+}
+</script>
+
 </body>
 </html>
